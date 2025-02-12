@@ -8,15 +8,30 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Custom CSS -->
     <link href="styles.css" rel="stylesheet">
-    <!-- React and ReactDOM (Development versions for better error messages) -->
+    <!-- React and ReactDOM -->
     <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
-    <!-- Babel for JSX -->
+    <!-- Babel -->
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <!-- Marked for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- DOMPurify for security -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.3/purify.min.js"></script>
+    <style>
+        /* Additional styles for markdown content */
+        .markdown-content h1 { font-size: 2em; margin-bottom: 0.5em; }
+        .markdown-content h2 { font-size: 1.5em; margin-bottom: 0.5em; }
+        .markdown-content h3 { font-size: 1.25em; margin-bottom: 0.5em; }
+        .markdown-content p { margin-bottom: 1em; }
+        .markdown-content ul { margin-bottom: 1em; padding-left: 2em; }
+        .markdown-content li { margin-bottom: 0.5em; }
+    </style>
 </head>
 <body class="bg-gray-50">
     <div id="root"></div>
-    <!-- Our React component -->
+    <!-- Content script -->
+    <script type="text/babel" src="content.js"></script>
+    <!-- Main app -->
     <script type="text/babel" src="main.js"></script>
 </body>
 </html>
