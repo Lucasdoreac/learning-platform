@@ -1,55 +1,4 @@
-// Components
-const Sidebar = ({ sections, activeSection, setActiveSection }) => (
-    <div className="hidden lg:block w-64 bg-white shadow-sm overflow-y-auto fixed h-screen">
-        <nav className="px-4 py-6">
-            <div className="font-semibold text-lg mb-4">Conteúdo</div>
-            {sections.map((section, index) => (
-                <button
-                    key={index}
-                    className={`block w-full text-left px-2 py-2 rounded-lg mb-1 ${
-                        activeSection === index ? 'bg-blue-50 text-blue-600' : 'text-gray-600 hover:bg-gray-50'
-                    }`}
-                    onClick={() => setActiveSection(index)}
-                >
-                    {section.title}
-                </button>
-            ))}
-        </nav>
-    </div>
-);
-
-const ContentSection = ({ title, content }) => (
-    <div className="prose prose-blue max-w-none">
-        <h2 className="text-2xl font-bold mb-6">{title}</h2>
-        {content}
-    </div>
-);
-
-const LoginModal = ({ isOpen, onClose }) => {
-    if (!isOpen) return null;
-    
-    return (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-            <div className="bg-white rounded-lg p-8 max-w-md w-full">
-                <div className="flex justify-between items-center mb-6">
-                    <h3 className="text-xl font-semibold">Entrar</h3>
-                    <button onClick={onClose} className="text-gray-500 hover:text-gray-700">×</button>
-                </div>
-                <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                        <input type="email" className="w-full px-3 py-2 border border-gray-300 rounded-lg" placeholder="seu@email.com" />
-                    </div>
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Senha</label>
-                        <input type="password" className="w-full px-3 py-2 border border-gray-300 rounded-lg" placeholder="••••••••" />
-                    </div>
-                    <button className="w-full py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Entrar</button>
-                </form>
-            </div>
-        </div>
-    );
-};
+const { useState } = React;
 
 function App() {
     const [isLoginOpen, setIsLoginOpen] = useState(false);
@@ -59,89 +8,186 @@ function App() {
     const sections = [
         {
             title: "Introdução",
-            content: (
-                <div>
-                    <p className="text-lg mb-6">
-                        Aprender 'tudo' é uma meta ambiciosa! Para tornar esse objetivo mais gerenciável, 
-                        posso te ajudar a explorar uma ampla gama de conhecimentos, desde ciências e 
-                        tecnologia até artes e humanidades. Você pode começar especificando um campo de 
-                        interesse inicial, e podemos construir um plano de aprendizado personalizado para você.
-                    </p>
-                    <h1 className="text-3xl font-bold mb-6">Guia Prático de Autoaprendizado Multidisciplinar</h1>
-                    <p className="mb-6">
-                        Este guia apresenta um plano estruturado para você aprender de forma autodidata em 
-                        diversas áreas do conhecimento – ciências, tecnologia, artes, humanidades, matemática, 
-                        filosofia e habilidades práticas. O plano está organizado em níveis de aprendizado 
-                        (iniciante, intermediário e avançado), com recomendações de materiais, recursos online, 
-                        livros e cursos adequados a cada etapa.
-                    </p>
-                </div>
-            )
+            content: `
+                <h1 class="text-4xl font-bold mb-8">Guia Prático de Autoaprendizado Multidisciplinar</h1>
+                <p class="text-lg mb-6">Este guia apresenta um plano estruturado para você aprender de forma autodidata em diversas áreas do conhecimento – ciências, tecnologia, artes, humanidades, matemática, filosofia e habilidades práticas.</p>
+                <p class="text-lg mb-6">O plano está organizado em níveis de aprendizado (iniciante, intermediário e avançado), com recomendações de materiais, recursos online, livros e cursos adequados a cada etapa.</p>
+            `
         },
         {
             title: "Nível Iniciante",
-            content: (
-                <div>
-                    <h2 className="text-2xl font-bold mb-6">Nível Iniciante</h2>
-                    <p className="mb-6">
-                        No nível iniciante, o foco é construir fundamentos amplos em cada área e despertar 
-                        o interesse. Nesta fase, busque conceitos básicos e visão geral de cada disciplina.
-                    </p>
-                    {/* Continue with all the content for Nível Iniciante */}
+            content: `
+                <h2 class="text-3xl font-bold mb-6">Nível Iniciante</h2>
+                <p class="text-lg mb-6">No nível iniciante, o foco é construir fundamentos amplos em cada área e despertar o interesse. Nesta fase, busque conceitos básicos e visão geral de cada disciplina.</p>
+                
+                <div class="mb-8">
+                    <h3 class="text-2xl font-semibold mb-4">Ciências</h3>
+                    <p class="mb-4">Comece explorando conceitos básicos das ciências naturais (física, química, biologia) de forma leve e envolvente.</p>
+                    <ul class="list-disc pl-6 space-y-3">
+                        <li><strong>Leitura:</strong> Uma breve história de quase tudo, de Bill Bryson – livro divertido que apresenta vários campos científicos de maneira acessível e instigante.</li>
+                        <li><strong>Online:</strong> Acesse a Khan Academy em português para lições introdutórias em ciência.</li>
+                        <li><strong>Curso:</strong> Faça cursos básicos ou MOOCs introdutórios.</li>
+                    </ul>
                 </div>
-            )
+
+                <div class="mb-8">
+                    <h3 class="text-2xl font-semibold mb-4">Tecnologia</h3>
+                    <p class="mb-4">Desenvolva letramento digital e introduza-se à lógica de programação de computadores.</p>
+                    <ul class="list-disc pl-6 space-y-3">
+                        <li><strong>Prática:</strong> Experimente tutoriais interativos em sites como Code.org e FreeCodeCamp.</li>
+                        <li><strong>Leitura:</strong> Consulte Internet e Informática para Leigos.</li>
+                        <li><strong>Curso:</strong> Inscreva-se em cursos online para iniciantes.</li>
+                    </ul>
+                </div>
+
+                <!-- Continue with other sections -->
+            `
         },
-        // Add all other sections here
+        {
+            title: "Nível Intermediário",
+            content: `
+                <h2 class="text-3xl font-bold mb-6">Nível Intermediário</h2>
+                <p class="text-lg mb-6">No nível intermediário, você já possui uma base em várias áreas e pode aprofundar seus conhecimentos.</p>
+                <!-- Add all intermediate level content -->
+            `
+        },
+        {
+            title: "Nível Avançado",
+            content: `
+                <h2 class="text-3xl font-bold mb-6">Nível Avançado</h2>
+                <p class="text-lg mb-6">No nível avançado, o objetivo é atingir alta proficiência ou mesmo maestria em uma ou mais áreas.</p>
+                <!-- Add all advanced level content -->
+            `
+        },
+        {
+            title: "Estratégias de Aprendizado",
+            content: `
+                <h2 class="text-3xl font-bold mb-6">Estratégias para Aprendizado Contínuo</h2>
+                <p class="text-lg mb-6">Para ter sucesso como autodidata ao longo do tempo, é fundamental adotar estratégias que mantenham sua motivação.</p>
+                <!-- Add all strategies content -->
+            `
+        }
     ];
+
+    const renderContent = (content) => {
+        return { __html: content };
+    };
 
     return (
         <div className="min-h-screen bg-gray-50">
-            {/* Navigation */}
-            <nav className="bg-white shadow-sm sticky top-0 z-40">
-                <div className="max-w-7xl mx-auto px-4">
+            {/* Header */}
+            <header className="bg-white shadow-sm fixed w-full z-50">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
                         <div className="flex items-center">
-                            <span className="text-2xl font-bold text-blue-600">EduLife</span>
+                            <div className="lg:hidden">
+                                <button
+                                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                                    className="text-gray-500 hover:text-gray-700"
+                                >
+                                    <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <div className="ml-4 lg:ml-0">
+                                <span className="text-2xl font-bold text-blue-600">EduLife</span>
+                            </div>
                         </div>
-                        <div className="hidden md:flex items-center space-x-8">
-                            <button onClick={() => setIsLoginOpen(true)} className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700">
-                                Entrar
-                            </button>
-                        </div>
-                        <div className="md:hidden flex items-center">
+                        <div className="flex items-center">
                             <button
-                                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                                className="text-gray-500 hover:text-gray-700"
+                                onClick={() => setIsLoginOpen(true)}
+                                className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700"
                             >
-                                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                                </svg>
+                                Entrar
                             </button>
                         </div>
                     </div>
                 </div>
-            </nav>
+            </header>
 
-            {/* Main content */}
-            <div className="flex">
-                <Sidebar 
-                    sections={sections}
-                    activeSection={activeSection}
-                    setActiveSection={setActiveSection}
-                />
-                
-                <main className="flex-1 lg:ml-64">
-                    <div className="max-w-7xl mx-auto px-4 py-8">
-                        <ContentSection
-                            title={sections[activeSection].title}
-                            content={sections[activeSection].content}
+            {/* Mobile Menu */}
+            {isMobileMenuOpen && (
+                <div className="lg:hidden fixed inset-0 z-40 flex">
+                    <div className="fixed inset-0 bg-black opacity-50" onClick={() => setIsMobileMenuOpen(false)}></div>
+                    <div className="relative flex-1 flex flex-col max-w-xs w-full bg-white">
+                        <div className="flex-1 h-0 pt-20 pb-4 overflow-y-auto">
+                            <nav className="px-2 space-y-1">
+                                {sections.map((section, index) => (
+                                    <button
+                                        key={index}
+                                        className={`w-full text-left px-3 py-2 rounded-md ${
+                                            activeSection === index
+                                                ? 'bg-blue-50 text-blue-600'
+                                                : 'text-gray-600 hover:bg-gray-50'
+                                        }`}
+                                        onClick={() => {
+                                            setActiveSection(index);
+                                            setIsMobileMenuOpen(false);
+                                        }}
+                                    >
+                                        {section.title}
+                                    </button>
+                                ))}
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Main Content */}
+            <div className="pt-16 lg:pt-16 lg:pl-64">
+                <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="py-8">
+                        <div
+                            className="prose prose-blue max-w-none"
+                            dangerouslySetInnerHTML={renderContent(sections[activeSection].content)}
                         />
                     </div>
                 </main>
             </div>
 
             {/* Login Modal */}
-            <LoginModal isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)} />
+            {isLoginOpen && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+                    <div className="bg-white rounded-lg p-8 max-w-md w-full">
+                        <div className="flex justify-between items-center mb-6">
+                            <h3 className="text-xl font-semibold">Entrar</h3>
+                            <button
+                                onClick={() => setIsLoginOpen(false)}
+                                className="text-gray-500 hover:text-gray-700"
+                            >
+                                ×
+                            </button>
+                        </div>
+                        <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">
+                                    Email
+                                </label>
+                                <input
+                                    type="email"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                                    placeholder="seu@email.com"
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">
+                                    Senha
+                                </label>
+                                <input
+                                    type="password"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                                    placeholder="••••••••"
+                                />
+                            </div>
+                            <button className="w-full py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                                Entrar
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
